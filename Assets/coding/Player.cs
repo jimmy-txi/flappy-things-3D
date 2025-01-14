@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     void Update()
     {
     //  Make follow camera too player and lerp movement
-    Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z), 0.1f);
+    // move player to right
+    transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
+
+    Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x+8, transform.position.y+5, Camera.main.transform.position.z), 0.1f);
 
     if (Input.GetKeyDown(KeyCode.Space))
     {
@@ -31,10 +34,12 @@ public class Player : MonoBehaviour
         if (isJumped)
         {
             isJumped = false;
-            player.AddForce(Vector2.up * 250);
-            if (player.velocity.y > 5)
+                player.velocity = new Vector2(0,0);            
+            player.AddForce(Vector2.up * 350);
+
+            if (player.velocity.y > 20)
             {
-                player.velocity = new Vector2(player.velocity.x, 5);
+                player.velocity = new Vector2(player.velocity.x, 20);
                 
             }
         }
