@@ -4,7 +4,7 @@ public class Pipe : MonoBehaviour
 {
     public GameObject pipeTop;
     public GameObject pipeBottom;
-
+    public float pipeSpeed = 5f;
     void Start()
     {
         // Vérifie que les objets ont des colliders
@@ -26,6 +26,8 @@ public class Pipe : MonoBehaviour
     void Update()
     {
         // Déplacement des pipes
-        transform.position += Vector3.left * 0.022f;
+        Debug.Log("Screen Resolution: " + Screen.width + "x" + Screen.height);
+        transform.position += Vector3.left * pipeSpeed * 1;
+        
     }
 }
