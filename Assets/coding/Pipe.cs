@@ -4,9 +4,10 @@ public class Pipe : MonoBehaviour
 {
     public GameObject pipeTop;
     public GameObject pipeBottom;
-    public float pipeSpeed = 5f;
+    public float pipeSpeed = 0.022f;
     void Start()
-    {
+    {   
+
         // Vérifie que les objets ont des colliders
         if (!pipeTop.GetComponent<Collider>())
         {
@@ -23,11 +24,10 @@ public class Pipe : MonoBehaviour
         pipeBottom.tag = "PipeBottom";
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Déplacement des pipes
-        Debug.Log("Screen Resolution: " + Screen.width + "x" + Screen.height);
-        transform.position += Vector3.left * pipeSpeed * 1;
+        transform.position = new Vector3(transform.position.x - 0.15f, transform.position.y, transform.position.z);
         
     }
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class generator : MonoBehaviour
 {   
-    public GameObject pipePrefab; // Le prefab des pipes
-    public float spawnMinTime = 1.5f; // Temps minimum entre les spawns
-    public float spawnMaxTime = 5f; // Temps maximum entre les spawns
+    public float spawnMinTime = 4f; // Temps minimum entre les spawns
+    public float spawnMaxTime = 6f; // Temps maximum entre les spawns
+
+    public List<GameObject> pipesmeshtypelist = new List<GameObject>();
+
+    private GameObject selectedPipeMeshType;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +23,12 @@ public class generator : MonoBehaviour
         {
             float waitTime = Random.Range(spawnMinTime, spawnMaxTime);
             yield return new WaitForSeconds(waitTime);
+            
+            selectedPipeMeshType = pipesmeshtypelist[Random.Range(0, pipesmeshtypelist.Count)];
 
             // Spawner le pipe à la position du spawnPoint
             float randomY = Random.Range(-10f, 5f);
-            GameObject newPipe =  Instantiate(pipePrefab, new Vector3(transform.position.x, randomY, transform.position.z), Quaternion.identity);
+            GameObject newPipe =  Instantiate(selectedPipeMeshType, new Vector3(transform.position.x, randomY, transform.position.z), Quaternion.identity);
         }
     }
 
